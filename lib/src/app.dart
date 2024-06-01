@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/remote.dart';
+import 'package:tvmate/src/remote_list.dart';
 
 class App extends StatelessWidget {
-  List<Widget> remotes = [];
-
-  App({super.key});
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: ListView(children: remotes),
-        floatingActionButton: FloatingActionButton(
-          child: const Text("Add remote"),
-          onPressed: () {
-            remotes.add(const Remote(ip: ""));
-          },
-        ),
+        body: RemoteList(),
       ),
     );
   }
