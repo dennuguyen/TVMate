@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tvmate/src/remote.dart';
-import 'package:multicast_dns/multicast_dns.dart';
 
 class RemoteList extends StatefulWidget {
   const RemoteList({super.key});
@@ -11,7 +10,6 @@ class RemoteList extends StatefulWidget {
 
 class _RemoteList extends State<RemoteList> {
   List<Widget> remotes = [];
-  final MDnsClient client = MDnsClient();
 
   @override
   Widget build(BuildContext context) {

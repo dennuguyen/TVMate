@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tvmate/src/discover.dart';
 import 'package:tvmate/src/remote_list.dart';
 
 class App extends StatelessWidget {
@@ -9,7 +10,12 @@ class App extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: RemoteList(),
+        body: Row(
+          children: [
+            Expanded(child: RemoteList()),
+            Expanded(child: Discover()),
+          ],
+        ),
       ),
     );
   }
