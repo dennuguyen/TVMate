@@ -13,10 +13,21 @@ class _DeviceList extends State<DeviceList> {
   int _selectedIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    DeviceListModel().fetch();
+  }
+
+  @override
+  void dispose() {
+    DeviceListModel().clearAll();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<DeviceListModel>(builder:
         (BuildContext context, DeviceListModel devices, Widget? child) {
-      devices.refresh();
       return devices.isEmpty
           ? const CircularProgressIndicator()
           : SizedBox(
