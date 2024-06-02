@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tvmate/src/add_remote/device_list.dart';
 
-class RemoteForm extends StatefulWidget {
-  const RemoteForm({super.key});
+class AddRemoteForm extends StatefulWidget {
+  const AddRemoteForm({super.key});
 
   @override
-  State<StatefulWidget> createState() => _RemoteForm();
+  State<StatefulWidget> createState() => _AddRemoteForm();
 }
 
-class _RemoteForm extends State<RemoteForm> {
+class _AddRemoteForm extends State<AddRemoteForm> {
   final _key = GlobalKey<FormState>();
 
   @override

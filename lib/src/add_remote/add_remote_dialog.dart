@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tvmate/src/add_remote/remote_form.dart';
+import 'package:tvmate/src/add_remote/add_remote_form.dart';
 
 class AddRemoteDialog extends StatelessWidget {
   const AddRemoteDialog({super.key});
@@ -12,7 +12,7 @@ class AddRemoteDialog extends StatelessWidget {
         return const Dialog(
           child: Padding(
             padding: EdgeInsets.all(8.0),
-            child: RemoteForm(),
+            child: AddRemoteForm(),
           ),
         );
       },
