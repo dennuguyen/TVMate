@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/add_remote/device_list.dart';
+import 'package:tvmate/src/add_remote/device_list/device_list.dart';
 
 class AddRemoteForm extends StatefulWidget {
   const AddRemoteForm({super.key});
