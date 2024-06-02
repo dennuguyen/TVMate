@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tvmate/src/add_remote/device_list/device_list_model.dart';
+import 'package:tvmate/src/add_remote/device_list/selectable_index_model.dart';
 import 'package:tvmate/src/remote_list.dart';
 import 'package:tvmate/src/remote_list_model.dart';
 
@@ -13,7 +14,8 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => RemoteListModel()),
-        ChangeNotifierProvider(create: (context) => DeviceListModel())
+        ChangeNotifierProvider(create: (context) => DeviceListModel()),
+        ChangeNotifierProvider(create: (context) => SelectableIndexModel())
       ],
       child: const MaterialApp(
         home: Scaffold(

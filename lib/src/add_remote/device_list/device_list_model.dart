@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:network_tools/network_tools.dart';
 import 'package:tvmate/src/add_remote/device.dart';
 
 class DeviceListModel extends ChangeNotifier {
@@ -21,8 +24,20 @@ class DeviceListModel extends ChangeNotifier {
     _devices.clear();
   }
 
-  void add(Device device) {
+  void _add(Device device) {
     _devices.add(device);
     notifyListeners();
+  }
+
+  Future<void> fetch() async {
+    try {
+      for (final ActiveHost activeHost
+          in await MdnsScannerService.instance.searchMdnsDevices()) {
+        final MdnsInfo? mdnsInfo = await activeHost.mdnsInfo;
+        _add(Device(activeHost: activeHost, mdnsInfo: mdnsInfo!));
+      }
+    } catch (e) {
+      throw SocketException(e.toString());
+    }
   }
 }
