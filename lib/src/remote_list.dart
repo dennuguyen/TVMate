@@ -1,38 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/remote.dart';
+import 'package:provider/provider.dart';
+import 'package:tvmate/src/add_remote/open_add_remote_dialog.dart';
+import 'package:tvmate/src/remote_list_model.dart';
 
-class RemoteList extends StatefulWidget {
+class RemoteList extends StatelessWidget {
   const RemoteList({super.key});
 
   @override
-  State<StatefulWidget> createState() => _RemoteList();
-}
-
-class _RemoteList extends State<RemoteList> {
-  List<Widget> remotes = [];
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: remotes.length,
-        itemBuilder: (context, index) {
-          final remote = remotes[index];
-          return remote;
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Text("Add remote"),
-        onPressed: () {
-          addRemote(Remote(key: UniqueKey(), ip: ""));
-        },
-      ),
+    return Consumer<RemoteListModel>(
+      builder: (BuildContext context, RemoteListModel remotes, Widget? child) {
+        return Scaffold(
+          body: ListView.builder(
+            itemCount: remotes.length,
+            itemBuilder: (context, index) {
+              final remote = remotes[index];
+              return remote;
+            },
+          ),
+          floatingActionButton: const OpenAddRemoteDialog(),
+        );
+      },
     );
-  }
-
-  void addRemote(Remote remote) {
-    setState(() {
-      remotes.add(remote);
-    });
   }
 }
