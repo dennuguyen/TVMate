@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/remote.dart';
+import 'package:tvmate/src/remote/remote.dart';
 
 class RemoteListModel extends ChangeNotifier {
   final List<Remote> _remotes = [];
