@@ -3,9 +3,23 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class Remote extends StatefulWidget {
+  final String label;
+  final String name;
+  final String location;
   final String ip;
+  final String gateway;
+  final String subnet;
+  final int port;
 
-  const Remote({super.key, required this.ip});
+  const Remote(
+      {super.key,
+      required this.ip,
+      required this.label,
+      required this.name,
+      required this.location,
+      required this.gateway,
+      required this.subnet,
+      required this.port});
 
   @override
   State<StatefulWidget> createState() => _Remote();

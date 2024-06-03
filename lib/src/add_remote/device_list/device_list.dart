@@ -37,7 +37,7 @@ class _DeviceList extends State<DeviceList> {
               itemBuilder: (context, index) {
                 final device = devices[index];
                 return ListTile(
-                  onTap: () => {form.selectIndex(index)},
+                  onTap: () => {form.selectDevice(device, index)},
                   selected: index == form.selectedIndex,
                   title: Text(device.mdnsInfo.getOnlyTheStartOfMdnsName()),
                 );
