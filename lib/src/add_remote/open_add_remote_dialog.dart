@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/add_remote/add_remote_dialog.dart';
+import 'package:tvmate/src/add_remote/add_remote_container.dart';
 
 class OpenAddRemoteDialog extends StatelessWidget {
   const OpenAddRemoteDialog({super.key});
@@ -9,7 +9,7 @@ class OpenAddRemoteDialog extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () => showDialog(
         context: context,
-        builder: (BuildContext context) => const AddRemoteDialog(),
+        builder: (BuildContext context) => const AddRemoteContainer(),
       ),
       child: const Text("Add remote"),
     );

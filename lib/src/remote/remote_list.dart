@@ -8,7 +8,7 @@ class RemoteList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var remotes = Provider.of<RemoteListModel>(context);
+    final remotes = Provider.of<RemoteListModel>(context);
     return Scaffold(
       body: ListView.builder(
         itemCount: remotes.length,
