@@ -13,13 +13,15 @@ class AddRemoteFormModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO: Prevent submit when there's no device selected.
   void submit(BuildContext context) {
     final remotes = Provider.of<RemoteListModel>(context, listen: false);
-    final form = Provider.of<AddRemoteFormModel>(context, listen: false);
     final devices = Provider.of<DeviceListModel>(context, listen: false);
 
-    final device = devices[form.selectedIndex];
+    if (devices.isEmpty) {
+      return;
+    }
+
+    final device = devices[selectedIndex];
     // device.mdnsInfo.mdnsName;
     // device.mdnsInfo.mdnsPort;
 
