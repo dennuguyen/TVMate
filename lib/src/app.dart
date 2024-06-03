@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tvmate/src/add_remote/add_remote_form/add_remote_form_model.dart';
 import 'package:tvmate/src/add_remote/device_list/device_list_model.dart';
-import 'package:tvmate/src/add_remote/device_list/selectable_index_model.dart';
 import 'package:tvmate/src/remote/remote_list.dart';
 import 'package:tvmate/src/remote/remote_list_model.dart';
 
@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => RemoteListModel()),
         ChangeNotifierProvider(create: (context) => DeviceListModel()),
-        ChangeNotifierProvider(create: (context) => SelectableIndexModel())
+        ChangeNotifierProvider(create: (context) => AddRemoteFormModel())
       ],
       child: const MaterialApp(
         home: Scaffold(

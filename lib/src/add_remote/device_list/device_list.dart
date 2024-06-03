@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tvmate/src/add_remote/add_remote_form/add_remote_form_model.dart';
 import 'package:tvmate/src/add_remote/device_list/device_list_model.dart';
-import 'package:tvmate/src/add_remote/device_list/selectable_index_model.dart';
 
 class DeviceList extends StatefulWidget {
   const DeviceList({super.key});
@@ -26,7 +26,7 @@ class _DeviceList extends State<DeviceList> {
   @override
   Widget build(BuildContext context) {
     final devices = Provider.of<DeviceListModel>(context);
-    final selected = Provider.of<SelectableIndexModel>(context);
+    final form = Provider.of<AddRemoteFormModel>(context);
     return devices.isEmpty
         ? const CircularProgressIndicator()
         : SizedBox(
@@ -37,8 +37,8 @@ class _DeviceList extends State<DeviceList> {
               itemBuilder: (context, index) {
                 final device = devices[index];
                 return ListTile(
-                  onTap: () => {selected.set(index)},
-                  selected: index == selected.index,
+                  onTap: () => {form.selectIndex(index)},
+                  selected: index == form.selectedIndex,
                   title: Text(device.mdnsInfo.getOnlyTheStartOfMdnsName()),
                 );
               },

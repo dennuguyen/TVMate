@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/add_remote/add_remote_button/add_remote_button.dart';
+import 'package:tvmate/src/add_remote/add_remote_form/add_remote_button.dart';
 import 'package:tvmate/src/add_remote/device_list/device_list.dart';
 
 class AddRemoteForm extends StatefulWidget {
@@ -10,6 +10,8 @@ class AddRemoteForm extends StatefulWidget {
 }
 
 class _AddRemoteForm extends State<AddRemoteForm> {
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return const Column(
