@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:network_tools/network_tools.dart';
-import 'package:tvmate/src/add_remote/device.dart';
+import 'package:tvmate/src/add_remote/device_list/device.dart';
 
 class DeviceListModel extends ChangeNotifier {
   DeviceListModel._construct();
