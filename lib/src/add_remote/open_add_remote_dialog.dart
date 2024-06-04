@@ -6,6 +6,7 @@ class OpenAddRemoteDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: delay when opening dialog after several opens
     return FloatingActionButton(
       onPressed: () => showDialog(
         context: context,
