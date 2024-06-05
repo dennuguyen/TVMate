@@ -29,9 +29,7 @@ class _DeviceList extends State<DeviceList> {
     final form = Provider.of<AddRemoteFormModel>(context);
     return devices.isEmpty
         ? const CircularProgressIndicator()
-        : SizedBox(
-            height: 300.0,
-            width: 300.0,
+        : Expanded(
             child: ListView.builder(
               itemCount: devices.length,
               itemBuilder: (context, index) {
