@@ -17,8 +17,9 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => DeviceListModel()),
         ChangeNotifierProvider(create: (context) => AddRemoteFormModel())
       ],
-      child: const MaterialApp(
-        home: Scaffold(
+      child: MaterialApp(
+        theme: ThemeData(),
+        home: const Scaffold(
           backgroundColor: Colors.white,
           body: RemoteList(),
         ),
