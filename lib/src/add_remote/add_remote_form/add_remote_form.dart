@@ -12,53 +12,67 @@ class AddRemoteForm extends StatefulWidget {
 }
 
 class _AddRemoteForm extends State<AddRemoteForm> {
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
-  // TODO: Clear the provider state when form is closed
-  @override
-  void deactivate() {
-    // final form = Provider.of<AddRemoteFormModel>(context);
-    // form.clear();
-    super.deactivate();
-  }
+  // final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final form = Provider.of<AddRemoteFormModel>(context);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        const Text("Select a device to connect to"),
-        const DeviceList(),
-        TextFormField(
-          decoration: const InputDecoration(
-            border: UnderlineInputBorder(),
-            labelText: "Give your remote a name",
-          ),
-          controller: form.label,
+    return Scaffold(
+      body: PopScope(
+        onPopInvoked: (didPop) => form.clear(),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Expanded(
+              child: Column(
+                children: [
+                  Text("Select a device to connect to"),
+                  DeviceList(),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Give your remote a name",
+                    ),
+                    controller: form.label,
+                    enabled: form.selectedIndex == -1 ? false : true,
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Device name",
+                    ),
+                    controller: form.name,
+                    enabled: false,
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "IP address",
+                    ),
+                    controller: form.ip,
+                    enabled: false,
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ],
         ),
-        TextFormField(
-          decoration: const InputDecoration(
-            border: UnderlineInputBorder(),
-            labelText: "Device name",
-          ),
-          controller: form.name,
-          readOnly: true,
-        ),
-        TextFormField(
-          decoration: const InputDecoration(
-            border: UnderlineInputBorder(),
-            labelText: "IP address",
-          ),
-          controller: form.ip,
-          readOnly: true,
-        ),
-        const ButtonBar(children: [
-          CloseButton(),
-          AddRemoteButton(),
-        ]),
-      ],
+      ),
+      floatingActionButton: const ButtonBar(children: [
+        // CloseButton(),
+        AddRemoteButton(),
+      ]),
     );
   }
 }
