@@ -23,6 +23,18 @@ class Remote extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _Remote();
+
+  Map<String, dynamic> toMap() {
+    return {
+      'label': label,
+      'name': name,
+      'location': location,
+      'ip': ip,
+      'gateway': gateway,
+      'subnet': subnet,
+      'port': port,
+    };
+  }
 }
 
 class _Remote extends State<Remote> {
