@@ -63,20 +63,25 @@ class _Remote extends State<Remote> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Remote $id"),
-        Text("IP: ${widget.ip}"),
-        Wrap(
-          children: controlCodes.keys.map((key) {
-            return ElevatedButton(
-              onPressed: () => fire(key),
-              child: Text(key),
-            );
-          }).toList(),
-        )
-      ],
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(widget.label),
+            Text("IP: ${widget.ip}"),
+            Wrap(
+              children: controlCodes.keys.map((key) {
+                return ElevatedButton(
+                  onPressed: () => fire(key),
+                  child: Text(key),
+                );
+              }).toList(),
+            )
+          ],
+        ),
+      ),
     );
   }
 
