@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tvmate/src/add_remote/open_add_remote_dialog.dart';
+import 'package:tvmate/src/add_remote/open_add_remote_modal_button.dart';
 import 'package:tvmate/src/remote/remote_list_model.dart';
 
 class RemoteList extends StatelessWidget {
@@ -17,7 +17,7 @@ class RemoteList extends StatelessWidget {
           return remote;
         },
       ),
-      floatingActionButton: const OpenAddRemoteDialog(),
+      floatingActionButton: const OpenAddRemoteModalButton(),
     );
   }
 }
