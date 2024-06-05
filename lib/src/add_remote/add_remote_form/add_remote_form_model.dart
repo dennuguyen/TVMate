@@ -50,6 +50,7 @@ class AddRemoteFormModel extends ChangeNotifier {
   }
 
   void clear() {
+    selectedIndex = -1;
     label.clear();
     name.clear();
     location.clear();
