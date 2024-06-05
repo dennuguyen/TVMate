@@ -20,8 +20,16 @@ class DeviceListModel extends ChangeNotifier {
   void operator []=(int i, Device device) => _devices[i] = device;
   bool get isEmpty => _devices.isEmpty;
 
+  // Clears the device list. It does not fetch again.
+  // Important to never call notifyListeners() because cannot assume tree is unlocked.
   void clear() {
     _devices.clear();
+  }
+
+  // Performs a clear and fetches device list again.
+  Future<void> refetch() async {
+    clear();
+    fetch();
   }
 
   void _add(Device device) {

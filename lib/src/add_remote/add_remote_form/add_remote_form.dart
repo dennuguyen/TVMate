@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tvmate/src/add_remote/add_remote_form/add_remote_button.dart';
 import 'package:tvmate/src/add_remote/add_remote_form/add_remote_form_model.dart';
+import 'package:tvmate/src/add_remote/add_remote_form/reset_add_remote_form_button.dart';
 import 'package:tvmate/src/add_remote/device_list/device_list.dart';
 
 class AddRemoteForm extends StatefulWidget {
@@ -70,7 +71,7 @@ class _AddRemoteForm extends State<AddRemoteForm> {
         ),
       ),
       floatingActionButton: const ButtonBar(children: [
-        // CloseButton(),
+        ResetAddRemoteFormButton(),
         AddRemoteButton(),
       ]),
     );

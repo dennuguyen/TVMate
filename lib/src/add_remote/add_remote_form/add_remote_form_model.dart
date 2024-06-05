@@ -58,5 +58,6 @@ class AddRemoteFormModel extends ChangeNotifier {
     gateway.clear();
     subnet.clear();
     port.clear();
+    notifyListeners();
   }
 }
