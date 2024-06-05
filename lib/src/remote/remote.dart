@@ -1,25 +1,17 @@
-import 'dart:io';
-
+import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
 class Remote extends StatefulWidget {
   final String label;
-  final String name;
   final String location;
-  final String ip;
-  final String gateway;
-  final String subnet;
-  final int port;
+  final BonsoirService service;
 
-  const Remote(
-      {super.key,
-      required this.ip,
-      required this.label,
-      required this.name,
-      required this.location,
-      required this.gateway,
-      required this.subnet,
-      required this.port});
+  const Remote({
+    super.key,
+    required this.label,
+    required this.location,
+    required this.service,
+  });
 
   @override
   State<StatefulWidget> createState() => _Remote();
@@ -27,21 +19,14 @@ class Remote extends StatefulWidget {
   Map<String, dynamic> toMap() {
     return {
       'label': label,
-      'name': name,
       'location': location,
-      'ip': ip,
-      'gateway': gateway,
-      'subnet': subnet,
-      'port': port,
+      'service': service.toJson(),
     };
   }
 }
 
 class _Remote extends State<Remote> {
-  static int remoteCount = 0;
-
-  late int id;
-  late WebSocket ws;
+  late BonsoirBroadcast broadcast;
 
   Map<String, String> controlCodes = {
     "Power": "",
@@ -65,11 +50,12 @@ class _Remote extends State<Remote> {
   @override
   void initState() {
     super.initState();
-    id = remoteCount++;
+    broadcast = BonsoirBroadcast(service: widget.service);
   }
 
   @override
   void dispose() {
+    broadcast.stop();
     super.dispose();
   }
 
@@ -82,7 +68,7 @@ class _Remote extends State<Remote> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(widget.label),
-            Text("IP: ${widget.ip}"),
+            Text("IP: ${widget.service.name}"),
             Wrap(
               children: controlCodes.keys.map((key) {
                 return ElevatedButton(
@@ -95,6 +81,10 @@ class _Remote extends State<Remote> {
         ),
       ),
     );
+  }
+
+  Future<void> start() async {
+    await broadcast.ready;
   }
 
   void fire(String key) {

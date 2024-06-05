@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tvmate/src/add_remote/add_remote_form/add_remote_button.dart';
-import 'package:tvmate/src/add_remote/add_remote_form/add_remote_form_model.dart';
+import 'package:tvmate/src/add_remote/add_remote_form/add_remote_form_service.dart';
 import 'package:tvmate/src/add_remote/add_remote_form/reset_add_remote_form_button.dart';
 import 'package:tvmate/src/add_remote/device_list/device_list.dart';
+import 'package:tvmate/src/add_remote/device_list/device_list_service.dart';
 
 class AddRemoteForm extends StatefulWidget {
   const AddRemoteForm({super.key});
@@ -17,10 +18,14 @@ class _AddRemoteForm extends State<AddRemoteForm> {
 
   @override
   Widget build(BuildContext context) {
-    final form = Provider.of<AddRemoteFormModel>(context);
+    final form = Provider.of<AddRemoteFormService>(context);
+    final devices = Provider.of<DeviceListService>(context);
     return Scaffold(
       body: PopScope(
-        onPopInvoked: (didPop) => form.clear(),
+        onPopInvoked: (didPop) {
+          form.clear();
+          devices.stop();
+        },
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,23 +51,7 @@ class _AddRemoteForm extends State<AddRemoteForm> {
                     enabled: form.selectedIndex == -1 ? false : true,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Device name",
-                    ),
-                    controller: form.name,
-                    enabled: false,
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "IP address",
-                    ),
-                    controller: form.ip,
-                    enabled: false,
-                  ),
+                  Text(form.service.name),
                   const SizedBox(height: 10),
                 ],
               ),
