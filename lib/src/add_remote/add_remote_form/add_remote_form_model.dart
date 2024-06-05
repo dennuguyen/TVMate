@@ -7,7 +7,7 @@ import 'package:tvmate/src/remote/remote.dart';
 import 'package:tvmate/src/remote/remote_list_model.dart';
 
 class AddRemoteFormModel extends ChangeNotifier {
-  int selectedIndex = 0;
+  int selectedIndex = -1;
   final TextEditingController label = TextEditingController();
   final TextEditingController name = TextEditingController();
   final TextEditingController location = TextEditingController();
@@ -18,7 +18,7 @@ class AddRemoteFormModel extends ChangeNotifier {
 
   void selectDevice(Device device, int index) {
     selectedIndex = index;
-    label.text = device.mdnsInfo.mdnsName;
+    label.text = device.mdnsInfo.getOnlyTheStartOfMdnsName();
     name.text = device.mdnsInfo.mdnsName;
     ip.text = device.activeHost.address;
     // port.text = device.mdnsInfo.mdnsPort;
