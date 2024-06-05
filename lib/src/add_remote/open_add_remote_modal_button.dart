@@ -6,7 +6,6 @@ class OpenAddRemoteModalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: debug delay when opening dialog after several opens
     return FloatingActionButton(
       onPressed: () => showModalBottomSheet(
         context: context,
