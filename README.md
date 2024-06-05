@@ -7,10 +7,10 @@
 
 ## Design Patterns
 
-- Views do not contain any business logic and data models at all.
-- All business logic and data models are put into a controller class in files suffixed with `_model.dart`.
-    - This class will always extend `ChangeNotifier` so any view that needs access to the class will use `Provider` or `Consumer`.
-- The only exception to the above is when business logic does not need to be shared outside of a view, so the view class extends `StatefulWidget` instead.
+- Code is split between view and service files.
+    - View is only UI.
+    - Service is for business logic and data models.
+        - Service always extends `ChangeNotifier`.
 
 ## Future Work
 
