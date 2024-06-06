@@ -9,9 +9,10 @@ class RemoteListService extends ChangeNotifier {
   void operator []=(int i, Remote remote) => _remotes[i] = remote;
   bool get isEmpty => _remotes.isEmpty;
 
-  // TODO: prevent duplicates.
   void add(Remote remote) {
-    _remotes.add(remote);
-    notifyListeners();
+    if (!_remotes.any((r) => r.service.name == remote.service.name)) {
+      _remotes.add(remote);
+      notifyListeners();
+    }
   }
 }
