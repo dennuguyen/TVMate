@@ -25,25 +25,29 @@ class DeviceListService extends ChangeNotifier {
   }
 
   void _add(BonsoirService device) {
-    _devices.add(device);
-    notifyListeners();
+    if (!_devices.any((d) => d.name == device.name)) {
+      _devices.add(device);
+      notifyListeners();
+    }
   }
 
-  void _remove() {}
+  void _remove(BonsoirService device) {
+    _devices.removeWhere((d) => d.name == device.name);
+    notifyListeners();
+  }
 
   Future<void> start() async {
     await discovery.ready;
     discovery.eventStream!.listen((e) {
-      if (e.type == BonsoirDiscoveryEventType.discoveryServiceFound) {
-        e.service!.resolve(discovery.serviceResolver);
-        // TODO: opening modal while this is resolving crashes
-      } else if (e.type == BonsoirDiscoveryEventType.discoveryServiceResolved) {
-        _add(e.service!);
-        print('Service resolved : ${e.service?.toJson()}');
-      } else if (e.type == BonsoirDiscoveryEventType.discoveryServiceLost) {
-        // TODO: remove service from list.
-        // _remove();
-        print('Service lost : ${e.service?.toJson()}');
+      // TODO: opening modal while this is resolving crashes
+      switch (e.type) {
+        case BonsoirDiscoveryEventType.discoveryServiceFound:
+          e.service!.resolve(discovery.serviceResolver);
+        case BonsoirDiscoveryEventType.discoveryServiceResolved:
+          _add(e.service!);
+        case BonsoirDiscoveryEventType.discoveryServiceLost:
+          _remove(e.service!);
+        default:
       }
     });
     await discovery.start();

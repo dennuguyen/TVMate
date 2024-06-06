@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tvmate/src/add_remote/add_remote_form/add_remote_form_service.dart';
-import 'package:tvmate/src/add_remote/device_list/device_list_service.dart';
+import 'package:tvmate/src/add_remote/add_remote_form_service.dart';
+import 'package:tvmate/src/device_list/device_list_service.dart';
 
 class DeviceList extends StatefulWidget {
   const DeviceList({super.key});
