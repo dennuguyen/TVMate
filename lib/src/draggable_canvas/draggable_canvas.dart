@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tvmate/src/draggable_canvas/draggable_painter.dart';
-import 'package:tvmate/src/draggable_canvas/draggable_rectangle.dart';
 import 'package:tvmate/src/draggable_canvas/draggable_shape.dart';
+import 'package:tvmate/src/draggable_canvas/draggable_shape_library.dart';
 
 class DraggableCanvas extends StatefulWidget {
   const DraggableCanvas({super.key});
@@ -11,31 +11,39 @@ class DraggableCanvas extends StatefulWidget {
 }
 
 class _DraggableCanvas extends State<DraggableCanvas> {
-  List<DraggableShape> shapes = [
-    DraggableRectangle(
-      position: const Offset(100, 100),
-      width: 100,
-      height: 50,
-      color: Colors.blue,
-      angle: 0.0,
-      scale: 1.0,
-    ),
-  ];
-
+  List<DraggableShape> shapes = [];
   DraggableShape? _draggedShape;
   late double _initialAngle;
   late double _initialScale;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onScaleStart: _onScaleStart,
-      onScaleUpdate: _onScaleUpdate,
-      onScaleEnd: _onScaleEnd,
-      child: CustomPaint(
-        size: const Size(double.infinity, double.infinity),
-        painter: DraggablePainter(shapes, _draggedShape),
-      ),
+    return Stack(
+      children: [
+        GestureDetector(
+          onScaleStart: _onScaleStart,
+          onScaleUpdate: _onScaleUpdate,
+          onScaleEnd: _onScaleEnd,
+          child: DragTarget<DraggableShape>(
+            onAcceptWithDetails: (details) {
+              setState(() {
+                shapes.add(details.data);
+              });
+            },
+            builder: (context, candidateData, rejectedData) {
+              return CustomPaint(
+                size: const Size(double.infinity, double.infinity),
+                painter: DraggablePainter(shapes, _draggedShape),
+              );
+            },
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: DraggableShapeLibrary(),
+        )
+      ],
     );
   }
 
@@ -61,8 +69,8 @@ class _DraggableCanvas extends State<DraggableCanvas> {
   }
 
   void _onScaleEnd(ScaleEndDetails details) {
-    if (details.pointerCount == 1) {
-      _draggedShape = null;
-    }
+    // if (details.pointerCount == 1) {
+    _draggedShape = null;
+    // }
   }
 }
