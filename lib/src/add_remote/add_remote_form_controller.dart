@@ -41,6 +41,8 @@ class AddRemoteFormController extends ChangeNotifier {
     ));
   }
 
+  // Clear form metadata.
+  // Do not call refresh device list here.
   void clear() {
     selectedIndex = -1;
     label.clear();
