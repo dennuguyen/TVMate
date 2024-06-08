@@ -69,8 +69,6 @@ class _DraggableCanvas extends State<DraggableCanvas> {
   }
 
   void _onScaleEnd(ScaleEndDetails details) {
-    // if (details.pointerCount == 1) {
     _draggedShape = null;
-    // }
   }
 }
