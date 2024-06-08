@@ -16,3 +16,4 @@
 
 - Increased security to prevent device hacking.
 - Increased security to prevent application hacking.
+- Let users build their own floor plans.
