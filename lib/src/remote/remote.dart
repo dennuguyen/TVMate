@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +29,7 @@ class Remote extends StatefulWidget {
 
 class _Remote extends State<Remote> {
   late BonsoirBroadcast broadcast;
+  late WebSocket ws;
 
   Map<String, String> controlCodes = {
     "Power": "",
@@ -51,6 +54,7 @@ class _Remote extends State<Remote> {
   void initState() {
     super.initState();
     broadcast = BonsoirBroadcast(service: widget.service);
+    start();
   }
 
   @override
@@ -85,7 +89,14 @@ class _Remote extends State<Remote> {
 
   Future<void> start() async {
     await broadcast.ready;
+    await broadcast.start();
   }
 
-  void fire(String key) {}
+  Future<void> stop() async {
+    await broadcast.stop();
+  }
+
+  void fire(String key) {
+    broadcast.
+  }
 }
