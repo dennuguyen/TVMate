@@ -51,6 +51,8 @@ class DeviceListService extends ChangeNotifier {
       }
     });
     await discovery.start();
+    _add(BonsoirService(name: "fake1", type: "type1", port: 1234));
+    _add(BonsoirService(name: "fake2", type: "type2", port: 1235));
   }
 
   Future<void> stop() async {
