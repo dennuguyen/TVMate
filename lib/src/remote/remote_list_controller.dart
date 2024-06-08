@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tvmate/src/remote/remote.dart';
 
-class RemoteListService extends ChangeNotifier {
+class RemoteListController extends ChangeNotifier {
   final List<Remote> _remotes = [];
 
   int get length => _remotes.length;

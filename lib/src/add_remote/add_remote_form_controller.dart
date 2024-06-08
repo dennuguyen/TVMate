@@ -2,11 +2,11 @@ import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:tvmate/src/device_list/device_list_service.dart';
+import 'package:tvmate/src/device_list/device_list_controller.dart';
 import 'package:tvmate/src/remote/remote.dart';
-import 'package:tvmate/src/remote/remote_list_service.dart';
+import 'package:tvmate/src/remote/remote_list_controller.dart';
 
-class AddRemoteFormService extends ChangeNotifier {
+class AddRemoteFormController extends ChangeNotifier {
   int selectedIndex = -1;
   final TextEditingController label = TextEditingController();
   final TextEditingController location = TextEditingController();
@@ -27,8 +27,8 @@ class AddRemoteFormService extends ChangeNotifier {
   }
 
   void submit(BuildContext context) {
-    final remotes = Provider.of<RemoteListService>(context, listen: false);
-    final devices = Provider.of<DeviceListService>(context, listen: false);
+    final remotes = Provider.of<RemoteListController>(context, listen: false);
+    final devices = Provider.of<DeviceListController>(context, listen: false);
 
     if (devices.isEmpty) {
       return;

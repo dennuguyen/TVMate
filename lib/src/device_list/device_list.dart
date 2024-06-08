@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tvmate/src/add_remote/add_remote_form_service.dart';
-import 'package:tvmate/src/device_list/device_list_service.dart';
+import 'package:tvmate/src/add_remote/add_remote_form_controller.dart';
+import 'package:tvmate/src/device_list/device_list_controller.dart';
 
 class DeviceList extends StatefulWidget {
   const DeviceList({super.key});
@@ -14,19 +14,19 @@ class _DeviceList extends State<DeviceList> {
   @override
   void initState() {
     super.initState();
-    DeviceListService().start();
+    DeviceListController().start();
   }
 
   @override
   void dispose() {
-    DeviceListService().clear();
+    DeviceListController().clear();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final devices = Provider.of<DeviceListService>(context);
-    final form = Provider.of<AddRemoteFormService>(context);
+    final devices = Provider.of<DeviceListController>(context);
+    final form = Provider.of<AddRemoteFormController>(context);
     return devices.isEmpty
         ? const CircularProgressIndicator()
         : Expanded(

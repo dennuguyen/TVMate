@@ -1,12 +1,13 @@
 import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
-class DeviceListService extends ChangeNotifier {
-  DeviceListService._construct();
+class DeviceListController extends ChangeNotifier {
+  DeviceListController._construct();
 
-  static final DeviceListService _instance = DeviceListService._construct();
+  static final DeviceListController _instance =
+      DeviceListController._construct();
 
-  factory DeviceListService() {
+  factory DeviceListController() {
     return _instance;
   }
 
