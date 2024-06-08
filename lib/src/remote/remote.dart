@@ -87,7 +87,5 @@ class _Remote extends State<Remote> {
     await broadcast.ready;
   }
 
-  void fire(String key) {
-    print("Firing $key");
-  }
+  void fire(String key) {}
 }
