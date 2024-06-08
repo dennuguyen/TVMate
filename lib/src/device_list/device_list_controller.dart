@@ -2,15 +2,6 @@ import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
 class DeviceListController extends ChangeNotifier {
-  DeviceListController._construct();
-
-  static final DeviceListController _instance =
-      DeviceListController._construct();
-
-  factory DeviceListController() {
-    return _instance;
-  }
-
   BonsoirDiscovery discovery = BonsoirDiscovery(type: '_http._tcp');
   final List<BonsoirService> _devices = [];
 
@@ -40,7 +31,6 @@ class DeviceListController extends ChangeNotifier {
   Future<void> start() async {
     await discovery.ready;
     discovery.eventStream!.listen((e) {
-      // TODO: opening modal while this is resolving crashes
       switch (e.type) {
         case BonsoirDiscoveryEventType.discoveryServiceFound:
           e.service!.resolve(discovery.serviceResolver);
