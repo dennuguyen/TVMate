@@ -6,20 +6,14 @@ import 'package:tvmate/src/add_remote/reset_add_remote_form_button.dart';
 import 'package:tvmate/src/device_list/device_list.dart';
 import 'package:tvmate/src/device_list/device_list_controller.dart';
 
-class AddRemoteForm extends StatefulWidget {
+class AddRemoteForm extends StatelessWidget {
   const AddRemoteForm({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _AddRemoteForm();
-}
-
-class _AddRemoteForm extends State<AddRemoteForm> {
-  // final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final form = Provider.of<AddRemoteFormController>(context);
     final devices = Provider.of<DeviceListController>(context);
+    devices.start();
     return Scaffold(
       body: PopScope(
         onPopInvoked: (didPop) {

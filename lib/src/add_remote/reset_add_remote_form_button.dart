@@ -3,14 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:tvmate/src/add_remote/add_remote_form_controller.dart';
 import 'package:tvmate/src/device_list/device_list_controller.dart';
 
-class ResetAddRemoteFormButton extends StatefulWidget {
+class ResetAddRemoteFormButton extends StatelessWidget {
   const ResetAddRemoteFormButton({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _ResetAddRemoteFormButton();
-}
-
-class _ResetAddRemoteFormButton extends State<ResetAddRemoteFormButton> {
   @override
   Widget build(BuildContext context) {
     final form = Provider.of<AddRemoteFormController>(context);
