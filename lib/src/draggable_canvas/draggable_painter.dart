@@ -10,6 +10,11 @@ class DraggablePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     for (final shape in shapes) {
+      if (shape == selectedShape) {
+        shape.color = Colors.red;
+      } else {
+        shape.color = Colors.blue;
+      }
       shape.draw(canvas);
     }
   }
