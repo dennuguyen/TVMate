@@ -3,25 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:tvmate/src/add_remote/add_remote_form_controller.dart';
 import 'package:tvmate/src/device_list/device_list_controller.dart';
 
-class DeviceList extends StatefulWidget {
+class DeviceList extends StatelessWidget {
   const DeviceList({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _DeviceList();
-}
-
-class _DeviceList extends State<DeviceList> {
-  @override
-  void initState() {
-    super.initState();
-    DeviceListController().start();
-  }
-
-  @override
-  void dispose() {
-    DeviceListController().clear();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
