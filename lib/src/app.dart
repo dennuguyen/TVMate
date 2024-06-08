@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => RemoteListController()),
         ChangeNotifierProvider(create: (context) => DeviceListController()),
-        ChangeNotifierProvider(create: (context) => AddRemoteFormController())
+        ChangeNotifierProvider(create: (context) => AddRemoteFormController()),
       ],
       child: MaterialApp(
         theme: ThemeData(),
