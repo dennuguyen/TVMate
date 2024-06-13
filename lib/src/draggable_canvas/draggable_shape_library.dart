@@ -51,8 +51,8 @@ class DraggableShapeLibrary extends StatelessWidget {
             children: [
               Draggable(
                 data: shape,
-                feedback: DraggableShapePreview(shape: shape),
-                child: DraggableShapePreview(shape: shape),
+                feedback: DraggablePreviewCanvas(shape: shape),
+                child: DraggablePreviewCanvas(shape: shape),
               ),
             ],
           );

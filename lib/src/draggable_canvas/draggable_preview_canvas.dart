@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tvmate/src/draggable_canvas/draggable_preview_painter.dart';
 import 'package:tvmate/src/draggable_canvas/draggable_shape.dart';
 
-class DraggableShapePreview extends StatelessWidget {
+class DraggablePreviewCanvas extends StatelessWidget {
   final DraggableShape shape;
 
-  const DraggableShapePreview({super.key, required this.shape});
+  const DraggablePreviewCanvas({super.key, required this.shape});
 
   @override
   Widget build(BuildContext context) {
