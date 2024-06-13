@@ -20,7 +20,9 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AddRemoteFormController()),
       ],
       child: MaterialApp(
-        theme: ThemeData(),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.transparent,
+        ),
         home: const Scaffold(
           backgroundColor: Colors.white,
           body: RemoteList(),

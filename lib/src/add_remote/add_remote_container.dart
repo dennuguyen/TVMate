@@ -8,7 +8,7 @@ class AddRemoteContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: UI bug where backgrounds are slightly diff colour due to padding.
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(30.0),
       child: const AddRemoteForm(),
     );
   }
