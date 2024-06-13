@@ -23,6 +23,7 @@ class DraggableRectangle extends DraggableShape {
       ..style = PaintingStyle.fill;
 
     canvas.save();
+    // Translate to center the shape.
     canvas.translate(position.dx, position.dy);
     canvas.rotate(angle);
     canvas.scale(scale);
@@ -62,5 +63,17 @@ class DraggableRectangle extends DraggableShape {
 
     // Check if point is within rectangle bounds
     return rect.contains(rotatedPoint);
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
+
+  @override
+  DraggableShape fromJson(Map<String, dynamic> json) {
+    // TODO: implement fromJson
+    throw UnimplementedError();
   }
 }

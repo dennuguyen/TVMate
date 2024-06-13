@@ -9,7 +9,11 @@ class OpenAddFloorPlanModalButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () => showDialog(
         context: context,
-        builder: (BuildContext context) => const FloorPlan(),
+        builder: (BuildContext context) => const Dialog(
+          clipBehavior: Clip.hardEdge,
+          backgroundColor: Colors.white70,
+          child: FloorPlan(),
+        ),
       ),
       child: const Text("Add floor plan"),
     );

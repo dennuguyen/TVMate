@@ -15,4 +15,7 @@ abstract class DraggableShape {
 
   void draw(Canvas canvas);
   bool contains(Offset point);
+
+  Map<String, dynamic> toJson();
+  DraggableShape fromJson(Map<String, dynamic> json);
 }
