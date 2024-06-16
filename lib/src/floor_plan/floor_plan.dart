@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tvmate/src/draggable_canvas/draggable_canvas.dart';
-import 'package:tvmate/src/draggable_canvas/draggable_shape_library.dart';
+import 'package:tvmate/src/draggable_canvas/draggable_preview_list.dart';
 
 class FloorPlan extends StatelessWidget {
   // Map<String, _> floorPlan;
@@ -16,7 +16,7 @@ class FloorPlan extends StatelessWidget {
           padding: const EdgeInsets.all(24.0),
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: DraggableShapeLibrary(),
+            child: DraggablePreviewList(),
           ),
         ),
       ],

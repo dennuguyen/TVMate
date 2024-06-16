@@ -3,7 +3,7 @@ import 'package:tvmate/src/draggable_canvas/draggable_rectangle.dart';
 import 'package:tvmate/src/draggable_canvas/draggable_shape.dart';
 import 'package:tvmate/src/draggable_canvas/draggable_preview_canvas.dart';
 
-class DraggableShapeLibrary extends StatelessWidget {
+class DraggablePreviewList extends StatelessWidget {
   final List<DraggableShape> libraryShapes = [
     DraggableRectangle(
       position: Offset.zero,
@@ -23,7 +23,7 @@ class DraggableShapeLibrary extends StatelessWidget {
     ),
   ];
 
-  DraggableShapeLibrary({super.key});
+  DraggablePreviewList({super.key});
 
   @override
   Widget build(BuildContext context) {
