@@ -81,4 +81,14 @@ class Rectangle extends InteractiveItem {
   Widget toWidget({Size size = Size.zero, Widget? child}) {
     return CustomPaint(painter: this, size: size, child: child);
   }
+
+  @override
+  Rectangle copy() => Rectangle(
+        width: width,
+        height: height,
+        position: position,
+        style: style,
+        angle: angle,
+        scale: scale,
+      );
 }

@@ -10,17 +10,17 @@ class InteractiveCanvasController extends RawCanvasController
   InteractiveCanvasController({super.painters});
 
   void onAcceptWithDetails(DragTargetDetails<InteractiveItem> details) {
-    details.data.position = details.offset;
-    interactables.add(details.data);
-
-    // painter.addListener(this.onScaleUpdate);
-    super.painters.add(details.data);
+    InteractiveItem temp = details.data.copy() as InteractiveItem;
+    temp.position = details.offset;
+    interactables.add(temp);
+    super.add(temp);
     notifyListeners();
   }
 
   @override
   void onScaleStart(ScaleStartDetails details) {
     for (final interactable in interactables) {
+      // TODO: overlapping shapes interfere.
       if (interactable.contains(details.localFocalPoint)) {
         interactable.onScaleStart(details);
         notifyListeners();

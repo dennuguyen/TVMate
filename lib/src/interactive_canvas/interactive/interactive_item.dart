@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tvmate/src/interactive_canvas/interactive/copyable.dart';
 import 'package:tvmate/src/interactive_canvas/interactive/interactable.dart';
 import 'package:tvmate/src/interactive_canvas/interactive/shapeable.dart';
 
 abstract class InteractiveItem extends CustomPainter
-    implements Interactable, Shapeable {
+    implements Interactable, Shapeable, Copyable {
   late double _initialAngle;
   late double _initialScale;
 
