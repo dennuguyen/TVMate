@@ -7,10 +7,12 @@
 
 ## Design Patterns
 
-- Code is split between view and service files.
+- Code is split between view and controller files.
     - View is only UI.
-    - Service is for business logic and data models.
-        - Service always extends `ChangeNotifier`.
+    - Controller is for business logic and data models.
+        - Always extends `ChangeNotifier`.
+- Canvas subpackage uses composite pattern which allows easy extension of custom shapes and whatnot.
+    - Custom shapes must extend `InteractiveItem`.
 
 ## Future Work
 
