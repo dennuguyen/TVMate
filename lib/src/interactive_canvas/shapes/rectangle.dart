@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/draggable_canvas/interactive/interactive_item.dart';
+import 'package:tvmate/src/interactive_canvas/interactive/interactive_item.dart';
 
 class Rectangle extends InteractiveItem {
   double width;

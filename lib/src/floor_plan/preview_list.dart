@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/draggable_canvas/shapes/rectangle.dart';
-import 'package:tvmate/src/draggable_canvas/interactive/shapeable.dart';
+import 'package:tvmate/src/interactive_canvas/shapes/rectangle.dart';
+import 'package:tvmate/src/interactive_canvas/interactive/shapeable.dart';
 
 class PreviewList extends StatelessWidget {
   final List<Shapeable> painters = [

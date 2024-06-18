@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/draggable_canvas/interactive/interactive_canvas_controller.dart';
-import 'package:tvmate/src/draggable_canvas/canvas/raw_canvas.dart';
-import 'package:tvmate/src/draggable_canvas/interactive/interactive_item.dart';
+import 'package:tvmate/src/interactive_canvas/interactive/interactive_canvas_controller.dart';
+import 'package:tvmate/src/interactive_canvas/canvas/raw_canvas.dart';
+import 'package:tvmate/src/interactive_canvas/interactive/interactive_item.dart';
 
 class InteractiveCanvas extends RawCanvas {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/draggable_canvas/canvas/raw_canvas_controller.dart';
-import 'package:tvmate/src/draggable_canvas/canvas/raw_canvas_painter.dart';
+import 'package:tvmate/src/interactive_canvas/canvas/raw_canvas_controller.dart';
+import 'package:tvmate/src/interactive_canvas/canvas/raw_canvas_painter.dart';
 
 class RawCanvas extends StatelessWidget {
   final RawCanvasController controller = RawCanvasController();
