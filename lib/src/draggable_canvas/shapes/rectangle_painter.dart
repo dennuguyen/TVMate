@@ -1,29 +1,36 @@
-import 'dart:ui';
 import 'dart:math';
 
-import 'package:tvmate/src/draggable_canvas/draggable_shape.dart';
+import 'package:flutter/material.dart';
+import 'package:tvmate/src/draggable_canvas/interactive/interactive_item.dart';
 
-class DraggableRectangle extends DraggableShape {
-  final double width;
-  final double height;
+class RectanglePainter extends InteractiveItem {
+  double width;
+  double height;
 
-  DraggableRectangle({
-    required super.position,
-    required super.color,
-    required super.angle,
-    required super.scale,
+  @override
+  double angle;
+
+  @override
+  Offset position;
+
+  @override
+  double scale;
+
+  @override
+  Paint style;
+
+  RectanglePainter({
     required this.width,
     required this.height,
+    required this.position,
+    required this.style,
+    required this.angle,
+    required this.scale,
   });
 
   @override
-  void draw(Canvas canvas) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
-
+  void paint(Canvas canvas, Size size) {
     canvas.save();
-    // Translate to center the shape.
     canvas.translate(position.dx, position.dy);
     canvas.rotate(angle);
     canvas.scale(scale);
@@ -33,9 +40,14 @@ class DraggableRectangle extends DraggableShape {
         width: width,
         height: height,
       ),
-      paint,
+      style,
     );
     canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 
   @override
@@ -66,14 +78,20 @@ class DraggableRectangle extends DraggableShape {
   }
 
   @override
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
+  void onScaleEnd(ScaleEndDetails details) {}
+
+  @override
+  void onScaleStart(ScaleStartDetails details) {}
+
+  @override
+  void onScaleUpdate(ScaleUpdateDetails details) {
+    position = details.localFocalPoint;
+    angle += details.rotation;
+    scale *= details.scale;
   }
 
   @override
-  DraggableShape fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+  Widget toWidget({Size size = Size.zero, Widget? child}) {
+    return CustomPaint(painter: this, size: size, child: child);
   }
 }

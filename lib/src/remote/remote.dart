@@ -28,13 +28,12 @@ class Remote extends StatefulWidget {
 }
 
 class _Remote extends State<Remote> {
-  late BonsoirBroadcast broadcast;
-  late WebSocket ws;
+  late final WebSocket websocket;
 
   Map<String, String> controlCodes = {
-    "Power": "",
-    "Vol +": "",
-    "Vol -": "",
+    "Power": "0000",
+    "Vol +": "0001",
+    "Vol -": "0010",
     "Mute": "",
     "Ch +": "",
     "Ch -": "",
@@ -53,13 +52,12 @@ class _Remote extends State<Remote> {
   @override
   void initState() {
     super.initState();
-    broadcast = BonsoirBroadcast(service: widget.service);
     start();
   }
 
   @override
   void dispose() {
-    broadcast.stop();
+    stop();
     super.dispose();
   }
 
@@ -88,15 +86,15 @@ class _Remote extends State<Remote> {
   }
 
   Future<void> start() async {
-    await broadcast.ready;
-    await broadcast.start();
+    // WebSocketException (WebSocketException: Unsupported URL scheme '')
+    websocket = await WebSocket.connect(widget.service.name);
   }
 
   Future<void> stop() async {
-    await broadcast.stop();
+    websocket.close();
   }
 
   void fire(String key) {
-    broadcast.
+    websocket.add(controlCodes[key]);
   }
 }
