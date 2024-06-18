@@ -78,19 +78,6 @@ class Rectangle extends InteractiveItem {
   }
 
   @override
-  void onScaleEnd(ScaleEndDetails details) {}
-
-  @override
-  void onScaleStart(ScaleStartDetails details) {}
-
-  @override
-  void onScaleUpdate(ScaleUpdateDetails details) {
-    position = details.localFocalPoint;
-    angle += details.rotation;
-    scale *= details.scale;
-  }
-
-  @override
   Widget toWidget({Size size = Size.zero, Widget? child}) {
     return CustomPaint(painter: this, size: size, child: child);
   }
