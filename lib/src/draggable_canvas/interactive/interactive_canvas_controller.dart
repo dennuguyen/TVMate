@@ -32,7 +32,7 @@ class InteractiveCanvasController extends RawCanvasController
 
   @override
   void onScaleUpdate(ScaleUpdateDetails details) {
-    // Ask the raw canvas to rebuild here.
+    // TODO: items are only draggable as long as the mouse is in-bounds. bad UX
     for (final interactable in interactables) {
       if (interactable.contains(details.localFocalPoint)) {
         interactable.onScaleUpdate(details);
