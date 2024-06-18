@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:tvmate/src/draggable_canvas/interactive/interactive_item.dart';
 
-class RectanglePainter extends InteractiveItem {
+class Rectangle extends InteractiveItem {
   double width;
   double height;
 
@@ -19,7 +19,7 @@ class RectanglePainter extends InteractiveItem {
   @override
   Paint style;
 
-  RectanglePainter({
+  Rectangle({
     required this.width,
     required this.height,
     required this.position,

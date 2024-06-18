@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tvmate/src/draggable_canvas/shapes/rectangle_painter.dart';
+import 'package:tvmate/src/draggable_canvas/shapes/rectangle.dart';
 import 'package:tvmate/src/draggable_canvas/interactive/shapeable.dart';
 
 class PreviewList extends StatelessWidget {
   final List<Shapeable> painters = [
-    RectanglePainter(
+    Rectangle(
       position: Offset.zero,
       width: 50,
       height: 50,
@@ -48,6 +48,7 @@ class PreviewList extends StatelessWidget {
                   border: Border.all(
                 color: Colors.black,
               )),
+              // TODO: refactor Draggable so it's cleaner to build custom menus.
               child: Draggable(
                 data: shape,
                 feedback: shape.toWidget(size: const Size.square(50)),
