@@ -5,7 +5,6 @@ import 'package:tvmate/src/draggable_canvas/interactive/interactive_item.dart';
 
 class InteractiveCanvasController extends RawCanvasController
     implements Interactable {
-  // final HashMap<CustomPainter, Interactable> interactables = HashMap();
   final List<InteractiveItem> interactables = [];
 
   InteractiveCanvasController({super.painters});
