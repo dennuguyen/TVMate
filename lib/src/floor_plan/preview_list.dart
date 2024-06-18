@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tvmate/src/interactive_canvas/interactive/interactive_item.dart';
 import 'package:tvmate/src/interactive_canvas/shapes/rectangle.dart';
-import 'package:tvmate/src/interactive_canvas/interactive/shapeable.dart';
 
 class PreviewList extends StatelessWidget {
-  final List<Shapeable> painters = [
+  final List<InteractiveItem> painters = [
     Rectangle(
       position: Offset.zero,
       width: 50,
