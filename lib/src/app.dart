@@ -16,6 +16,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ChangeNotifierProvider must be placed at root because of Navigator.
+    // TODO: move controllers closer to their use (esp. canvas ones).
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => RemoteListController()),
