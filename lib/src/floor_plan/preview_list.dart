@@ -3,13 +3,24 @@ import 'package:tvmate/src/interactive_canvas/interactive/interactive_item.dart'
 import 'package:tvmate/src/interactive_canvas/shapes/rectangle.dart';
 
 class PreviewList extends StatelessWidget {
-  final List<InteractiveItem> painters = [
+  final List<InteractiveItem> items = [
     Rectangle(
-      position: Offset.zero,
+      position: const Offset(25, 25), // half of width and height to centre
       width: 50,
       height: 50,
       style: Paint()
         ..color = Colors.black
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 4,
+      angle: 0.0,
+      scale: 1.0,
+    ),
+    Rectangle(
+      position: const Offset(25, 25), // half of width and height to centre
+      width: 50,
+      height: 50,
+      style: Paint()
+        ..color = Colors.green
         ..style = PaintingStyle.stroke
         ..strokeWidth = 4,
       angle: 0.0,
@@ -32,31 +43,24 @@ class PreviewList extends StatelessWidget {
               color: Colors.grey,
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3),
             )
           ]),
-      child: ListView.builder(
+      child: ListView.separated(
         padding: const EdgeInsets.only(left: 50),
         scrollDirection: Axis.horizontal,
-        itemCount: painters.length,
+        itemCount: items.length,
         itemBuilder: (context, index) {
-          final shape = painters[index];
+          final item = items[index];
           return Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                color: Colors.black,
-              )),
-              // TODO: refactor Draggable so it's cleaner to build custom menus.
-              child: Draggable(
-                data: shape,
-                feedback: shape.toWidget(size: const Size.square(50)),
-                child: shape.toWidget(size: const Size.square(50)),
-              ),
+            alignment: Alignment.center,
+            child: Draggable(
+              data: item,
+              feedback: item.toWidget(size: const Size.square(50)),
+              child: item.toWidget(size: const Size.square(50)),
             ),
           );
         },
+        separatorBuilder: (context, index) => const SizedBox(width: 50),
       ),
     );
   }
