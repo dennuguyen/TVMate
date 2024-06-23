@@ -2,7 +2,8 @@ import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
 class DeviceListController extends ChangeNotifier {
-  BonsoirDiscovery discovery = BonsoirDiscovery(type: '_http._tcp');
+  static const String _serviceType = '_esp8266._tcp';
+  BonsoirDiscovery discovery = BonsoirDiscovery(type: _serviceType);
   final List<BonsoirService> _devices = [];
 
   int get length => _devices.length;
@@ -42,13 +43,11 @@ class DeviceListController extends ChangeNotifier {
       }
     });
     await discovery.start();
-    _add(BonsoirService(name: "fake1", type: "type1", port: 1234));
-    _add(BonsoirService(name: "fake2", type: "type2", port: 1235));
   }
 
   Future<void> stop() async {
     await discovery.stop();
-    discovery = BonsoirDiscovery(type: '_http._tcp');
+    discovery = BonsoirDiscovery(type: _serviceType);
   }
 
   // Performs a clear and fetches device list again.
