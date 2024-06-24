@@ -11,9 +11,10 @@ class AddRemoteFormController extends ChangeNotifier {
   final TextEditingController label = TextEditingController();
   final TextEditingController location = TextEditingController();
   final TextEditingController host = TextEditingController();
-  late BonsoirService service = BonsoirService(name: "", type: "", port: 0);
+  late ResolvedBonsoirService service =
+      ResolvedBonsoirService(host: '', name: '', type: '', port: 0);
 
-  void selectDevice(BonsoirService service, int index) {
+  void selectDevice(ResolvedBonsoirService service, int index) {
     selectedIndex = index;
     label.text = service.name;
     host.text = service.name;
@@ -47,7 +48,7 @@ class AddRemoteFormController extends ChangeNotifier {
     selectedIndex = -1;
     label.clear();
     location.clear();
-    service = BonsoirService(name: "", type: "", port: 0);
+    service = ResolvedBonsoirService(host: '', name: '', type: '', port: 0);
     notifyListeners();
   }
 }

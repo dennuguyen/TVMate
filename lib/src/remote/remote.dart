@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class Remote extends StatefulWidget {
   final String label;
   final String location;
-  final BonsoirService service;
+  final ResolvedBonsoirService service;
 
   const Remote({
     super.key,

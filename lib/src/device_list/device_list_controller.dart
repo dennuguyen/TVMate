@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 class DeviceListController extends ChangeNotifier {
   static const String _serviceType = '_esp8266._tcp';
   BonsoirDiscovery discovery = BonsoirDiscovery(type: _serviceType);
-  final List<BonsoirService> _devices = [];
+  final List<ResolvedBonsoirService> _devices = [];
 
   int get length => _devices.length;
-  BonsoirService operator [](int i) => _devices[i];
-  void operator []=(int i, BonsoirService device) => _devices[i] = device;
+  ResolvedBonsoirService operator [](int i) => _devices[i];
+  void operator []=(int i, ResolvedBonsoirService device) =>
+      _devices[i] = device;
   bool get isEmpty => _devices.isEmpty;
 
   // Clears the device list. It does not fetch again.
@@ -17,14 +18,14 @@ class DeviceListController extends ChangeNotifier {
     _devices.clear();
   }
 
-  void _add(BonsoirService device) {
+  void _add(ResolvedBonsoirService device) {
     if (!_devices.any((d) => d.name == device.name)) {
       _devices.add(device);
       notifyListeners();
     }
   }
 
-  void _remove(BonsoirService device) {
+  void _remove(ResolvedBonsoirService device) {
     _devices.removeWhere((d) => d.name == device.name);
     notifyListeners();
   }
@@ -35,11 +36,15 @@ class DeviceListController extends ChangeNotifier {
       switch (e.type) {
         case BonsoirDiscoveryEventType.discoveryServiceFound:
           e.service!.resolve(discovery.serviceResolver);
+          break;
         case BonsoirDiscoveryEventType.discoveryServiceResolved:
-          _add(e.service!);
+          _add(e.service! as ResolvedBonsoirService);
+          break;
         case BonsoirDiscoveryEventType.discoveryServiceLost:
-          _remove(e.service!);
+          _remove(e.service! as ResolvedBonsoirService);
+          break;
         default:
+          break;
       }
     });
     await discovery.start();
