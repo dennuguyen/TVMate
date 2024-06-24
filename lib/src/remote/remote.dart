@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
+// TODO: handle if disconnect and reconnect.
 class Remote extends StatefulWidget {
   final String label;
   final String location;
@@ -29,6 +30,7 @@ class Remote extends StatefulWidget {
 
 class _Remote extends State<Remote> {
   late final WebSocket websocket;
+  bool connected = false;
 
   Map<String, String> controlCodes = {
     "Power": "0000",
@@ -86,15 +88,32 @@ class _Remote extends State<Remote> {
   }
 
   Future<void> start() async {
-    // WebSocketException (WebSocketException: Unsupported URL scheme '')
-    websocket = await WebSocket.connect(widget.service.name);
+    try {
+      String host = widget.service.host!;
+      host = host.substring(0, host.length - 1);
+      final port = widget.service.port;
+      final url = 'ws://$host:$port';
+      websocket = await WebSocket.connect(url);
+      setState(() {
+        connected = true;
+      });
+    } catch (e) {
+      print('Websocket connection error: $e');
+    }
   }
 
   Future<void> stop() async {
-    websocket.close();
+    if (connected) {
+      websocket.close();
+      setState(() {
+        connected = false;
+      });
+    }
   }
 
   void fire(String key) {
-    websocket.add(controlCodes[key]);
+    if (connected) {
+      websocket.add(controlCodes[key]);
+    }
   }
 }
