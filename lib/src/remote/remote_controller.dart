@@ -40,6 +40,12 @@ class RemoteController extends ChangeNotifier {
     url = 'ws://$host:${service.port}';
   }
 
+  @override
+  void dispose() {
+    stop();
+    super.dispose();
+  }
+
   Future<void> start() async {
     if (connected) {
       return;

@@ -15,4 +15,10 @@ class RemoteListController extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  bool remove(Remote remote) {
+    final success = _remotes.remove(remote);
+    notifyListeners();
+    return success;
+  }
 }

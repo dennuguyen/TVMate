@@ -52,7 +52,10 @@ class _Remote extends State<Remote> {
           padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
-              RemoteHeader(),
+              Padding(
+                padding: EdgeInsets.all(4.0),
+                child: RemoteHeader(),
+              ),
               RemoteButtonSet(),
             ],
           ),
