@@ -71,6 +71,8 @@ class RemoteController extends ChangeNotifier {
   Future<void> stop() async {
     await websocket?.close();
     websocket = null;
+    _pingTimer?.cancel();
+    _pongTimer?.cancel();
     notifyListeners();
   }
 
@@ -100,7 +102,7 @@ class RemoteController extends ChangeNotifier {
   void _ponging() {
     _pongTimer?.cancel();
     _pongTimer = Timer.periodic(
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
       (timer) => stop(),
     );
   }
