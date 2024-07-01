@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tvmate/src/remote/remote_controller.dart';
 import 'package:tvmate/src/remote/remote_delete_button.dart';
 import 'package:tvmate/src/remote/remote_icon.dart';
+import 'package:tvmate/src/remote/remote_ping_button.dart';
 import 'package:tvmate/src/remote/remote_reset_button.dart';
 
 class RemoteHeader extends StatelessWidget {
@@ -31,6 +32,7 @@ class RemoteHeader extends StatelessWidget {
         ),
         const ButtonBar(
           children: [
+            RemotePingButton(),
             RemoteDeleteButton(),
             RemoteResetButton(),
           ],

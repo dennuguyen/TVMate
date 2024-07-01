@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bonsoir/bonsoir.dart';
@@ -10,6 +11,8 @@ class RemoteController extends ChangeNotifier {
   final ResolvedBonsoirService service;
   WebSocket? websocket;
   bool get connected => websocket != null;
+  Timer? _pingTimer;
+  Timer? _pongTimer;
 
   Map<String, String> commands = {
     "Power": "20DF10EF",
@@ -51,9 +54,13 @@ class RemoteController extends ChangeNotifier {
 
     try {
       websocket = await WebSocket.connect(url);
-      // TODO: nullify websocket if not connected
-      // Pings the device. Will auto-disconnect if no pong.
-      // websocket.pingInterval = const Duration(seconds: 5);
+      websocket!.listen((event) {
+        if (event == "pong") {
+          print(event);
+          _pongTimer?.cancel();
+        }
+      });
+      _pinging();
       notifyListeners();
     } catch (e) {
       stop();
@@ -74,5 +81,27 @@ class RemoteController extends ChangeNotifier {
 
   void fire(String key) {
     websocket?.add(commands[key]);
+  }
+
+  void ping() {
+    websocket?.add('ping');
+  }
+
+  void _pinging() {
+    _pingTimer = Timer.periodic(
+      const Duration(seconds: 10),
+      (timer) {
+        ping();
+        _ponging();
+      },
+    );
+  }
+
+  void _ponging() {
+    _pongTimer?.cancel();
+    _pongTimer = Timer.periodic(
+      const Duration(seconds: 3),
+      (timer) => stop(),
+    );
   }
 }
