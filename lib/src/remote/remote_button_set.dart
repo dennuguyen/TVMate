@@ -9,6 +9,7 @@ class RemoteButtonSet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<RemoteController>(context);
+    // TODO: make look nicer
     return Wrap(
       children: controller.commands.keys.map((c) {
         return RemoteButton(command: c);

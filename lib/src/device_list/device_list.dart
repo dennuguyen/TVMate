@@ -10,6 +10,7 @@ class DeviceList extends StatelessWidget {
   Widget build(BuildContext context) {
     final devices = Provider.of<DeviceListController>(context);
     final form = Provider.of<AddRemoteFormController>(context);
+    // TODO: indicate if device is already connected to
     return devices.isEmpty
         ? const CircularProgressIndicator()
         : Expanded(

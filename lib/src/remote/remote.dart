@@ -5,7 +5,6 @@ import 'package:tvmate/src/remote/remote_button_set.dart';
 import 'package:tvmate/src/remote/remote_controller.dart';
 import 'package:tvmate/src/remote/remote_header.dart';
 
-// TODO: handle if disconnect and reconnect.
 class Remote extends StatefulWidget {
   final String label;
   final String location;

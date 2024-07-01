@@ -46,6 +46,7 @@ class RemoteController extends ChangeNotifier {
     super.dispose();
   }
 
+  // TODO: auto-connect websocket if remote is in remote list
   Future<void> start() async {
     if (connected) {
       return;
@@ -53,6 +54,7 @@ class RemoteController extends ChangeNotifier {
 
     try {
       websocket = await WebSocket.connect(url);
+      // TODO: nullify websocket if not connected
       // Pings the device. Will auto-disconnect if no pong.
       // websocket.pingInterval = const Duration(seconds: 5);
       notifyListeners();
