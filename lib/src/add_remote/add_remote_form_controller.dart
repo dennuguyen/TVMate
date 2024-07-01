@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tvmate/src/device_list/device_list_controller.dart';
 import 'package:tvmate/src/remote/remote.dart';
-import 'package:tvmate/src/remote/remote_list_controller.dart';
+import 'package:tvmate/src/remote_list/remote_list_controller.dart';
 
 class AddRemoteFormController extends ChangeNotifier {
   int selectedIndex = -1;
