@@ -4,10 +4,10 @@ import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
 class RemoteController extends ChangeNotifier {
-  late final String label;
-  late final String location;
-  late final ResolvedBonsoirService service;
-  late String url;
+  final String label;
+  final String url;
+  final String location;
+  final ResolvedBonsoirService service;
   WebSocket? websocket;
   bool get connected => websocket != null;
 
@@ -32,13 +32,10 @@ class RemoteController extends ChangeNotifier {
 
   RemoteController({
     required this.label,
+    required this.url,
     required this.location,
     required this.service,
-  }) {
-    String host = service.host!;
-    host = host.substring(0, host.length - 1);
-    url = 'ws://$host:${service.port}';
-  }
+  });
 
   @override
   void dispose() {

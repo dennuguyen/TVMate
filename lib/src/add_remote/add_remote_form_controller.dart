@@ -11,14 +11,21 @@ class AddRemoteFormController extends ChangeNotifier {
   final TextEditingController label = TextEditingController();
   final TextEditingController location = TextEditingController();
   final TextEditingController host = TextEditingController();
+  final TextEditingController url = TextEditingController();
   late ResolvedBonsoirService service =
       ResolvedBonsoirService(host: '', name: '', type: '', port: 0);
 
   void selectDevice(ResolvedBonsoirService service, int index) {
+    this.service = service;
     selectedIndex = index;
     label.text = service.name;
     host.text = service.name;
-    this.service = service;
+
+    // Get URL.
+    String temp = service.host!;
+    temp = temp.substring(0, temp.length - 1);
+    url.text = 'ws://$temp:${service.port}';
+
     notifyListeners();
   }
 
@@ -37,6 +44,7 @@ class AddRemoteFormController extends ChangeNotifier {
 
     remotes.add(Remote(
       label: label.text,
+      url: url.text,
       location: location.text,
       service: service,
     ));

@@ -39,7 +39,7 @@ class AddRemoteForm extends StatelessWidget {
                   TextFormField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: "Give your remote a name",
+                      labelText: "Give your remote a label",
                     ),
                     controller: form.label,
                     enabled: form.selectedIndex == -1 ? false : true,
@@ -53,7 +53,15 @@ class AddRemoteForm extends StatelessWidget {
                     controller: form.host,
                     enabled: false,
                   ),
-                  Text(form.service.name),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "URL",
+                    ),
+                    controller: form.url,
+                    enabled: false,
+                  ),
                   const SizedBox(height: 10),
                 ],
               ),
