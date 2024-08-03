@@ -1,40 +1,38 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tvmate/src/remote/remote.dart';
+import 'package:tvmate/src/remote/remote_controller.dart';
+import 'package:tvmate/util/persistable.dart';
 
-class RemoteListController extends ChangeNotifier {
-  final List<Remote> _remotes = [];
+class RemoteListController extends ChangeNotifier with Persistable {
+  final List<RemoteController> _remotes = [];
 
   int get length => _remotes.length;
-  Remote operator [](int i) => _remotes[i];
-  void operator []=(int i, Remote remote) => _remotes[i] = remote;
+  RemoteController operator [](int i) => _remotes[i];
+  void operator []=(int i, RemoteController remote) => _remotes[i] = remote;
   bool get isEmpty => _remotes.isEmpty;
 
-  void load() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final List<String>? strs = prefs.getStringList('remotes');
-    for (var str in strs!) {
-      var remote = json.decode(str);
-      _remotes.add(Remote(
-        label: remote['label'],
-        url: '',
-        location: '',
-      ));
-    }
-  }
+  // @override
+  // Future<Object?> load(String key) {
+  //   Object? remoteIds = await super.load('remotes');
+  //   return super.load(key);
+  // }
 
-  void save() async {}
+  // @override
+  // Future<void> save(String key, Object object) {
+  //   // TODO: implement save
+  //   return super.save(key, object);
+  // }
 
-  void add(Remote remote) {
+  void add(RemoteController remote) async {
     if (!_remotes.any((r) => r.url == remote.url)) {
       _remotes.add(remote);
       notifyListeners();
+
+      // Save data.
+      // save('remotes', remoteIds!);
     }
   }
 
-  bool remove(Remote remote) {
+  bool remove(RemoteController remote) {
     final success = _remotes.remove(remote);
     notifyListeners();
     return success;

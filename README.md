@@ -24,10 +24,15 @@ classDiagram
     AddRemoteFormController --> DeviceListController : validates with
     DeviceList --> DeviceListController : renders with
     DeviceList --> AddRemoteFormController : selects device with
-    RemoteList --> RemoteListController
-    RemoteListController --* "*" Remote
-    Remote --* RemoteController
+    RemoteList --> RemoteListController : renders with
+    RemoteListController "1" --* "*" RemoteController
+    RemoteList "1" --* "*" Remote
+    Remote "1" --> "1" RemoteController : renders with
+    RemoteController "1" --* "1" RemoteModel
+    RemoteListController ..|> Persistable
+    RemoteModel ..|> Persistable
 
+    <<mixin>> Persistable
 ```
 
 ## Future Work

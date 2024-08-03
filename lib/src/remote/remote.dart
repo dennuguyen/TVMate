@@ -5,15 +5,11 @@ import 'package:tvmate/src/remote/remote_controller.dart';
 import 'package:tvmate/src/remote/remote_header.dart';
 
 class Remote extends StatefulWidget {
-  final String label;
-  final String url;
-  final String location;
+  final RemoteController controller;
 
   const Remote({
     super.key,
-    required this.label,
-    required this.url,
-    required this.location,
+    required this.controller,
   });
 
   @override
@@ -21,29 +17,23 @@ class Remote extends StatefulWidget {
 }
 
 class _Remote extends State<Remote> {
-  late RemoteController controller = RemoteController(
-    label: widget.label,
-    url: widget.url,
-    location: widget.location,
-  );
-
   @override
   void initState() {
     super.initState();
-    controller.start();
+    widget.controller.start();
   }
 
   @override
   void dispose() {
-    controller.stop();
+    widget.controller.stop();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    controller.start();
+    widget.controller.start();
     return ChangeNotifierProvider<RemoteController>.value(
-      value: controller,
+      value: widget.controller,
       child: const Card(
         child: Padding(
           padding: EdgeInsets.all(8.0),

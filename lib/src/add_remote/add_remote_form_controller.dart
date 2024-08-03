@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tvmate/src/device_list/device_list_controller.dart';
-import 'package:tvmate/src/remote/remote.dart';
+import 'package:tvmate/src/remote/remote_controller.dart';
 import 'package:tvmate/src/remote_list/remote_list_controller.dart';
 
 class AddRemoteFormController extends ChangeNotifier {
@@ -42,7 +42,7 @@ class AddRemoteFormController extends ChangeNotifier {
       return;
     }
 
-    remotes.add(Remote(
+    remotes.add(RemoteController(
       label: label.text,
       url: url.text,
       location: location.text,
