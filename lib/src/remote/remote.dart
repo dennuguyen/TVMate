@@ -21,16 +21,15 @@ class Remote extends StatefulWidget {
 }
 
 class _Remote extends State<Remote> {
-  late RemoteController controller;
+  late RemoteController controller = RemoteController(
+    label: widget.label,
+    url: widget.url,
+    location: widget.location,
+  );
 
   @override
   void initState() {
     super.initState();
-    controller = RemoteController(
-      label: widget.label,
-      url: widget.url,
-      location: widget.location,
-    );
     controller.start();
   }
 
