@@ -14,6 +14,22 @@
 - Canvas subpackage uses composite pattern which allows easy extension of custom shapes and whatnot.
     - Custom shapes must extend `InteractiveItem`.
 
+## UML
+
+```mermaid
+classDiagram
+    AddRemoteForm --> AddRemoteFormController : renders with
+    AddRemoteForm --> DeviceListController : discovers devices with
+    AddRemoteFormController --> RemoteListController : adds to
+    AddRemoteFormController --> DeviceListController : validates with
+    DeviceList --> DeviceListController : renders with
+    DeviceList --> AddRemoteFormController : selects device with
+    RemoteList --> RemoteListController
+    RemoteListController --* "*" Remote
+    Remote --* RemoteController
+
+```
+
 ## Future Work
 
 - Increased security to prevent device hacking.
