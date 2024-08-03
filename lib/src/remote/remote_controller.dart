@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 
 class RemoteController extends ChangeNotifier {
   final String label;
   final String url;
   final String location;
-  final ResolvedBonsoirService service;
   WebSocket? websocket;
   bool get connected => websocket != null;
   Timer? _pingTimer;
@@ -37,7 +35,6 @@ class RemoteController extends ChangeNotifier {
     required this.label,
     required this.url,
     required this.location,
-    required this.service,
   });
 
   @override
@@ -56,7 +53,6 @@ class RemoteController extends ChangeNotifier {
       websocket = await WebSocket.connect(url);
       websocket!.listen((event) {
         if (event == "pong") {
-          print(event);
           _pongTimer?.cancel();
         }
       });
@@ -64,7 +60,6 @@ class RemoteController extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       stop();
-      print(e);
     }
   }
 
@@ -89,6 +84,7 @@ class RemoteController extends ChangeNotifier {
     websocket?.add('ping');
   }
 
+  // TODO: after auto-connecting, device will act disconnected
   void _pinging() {
     _pingTimer = Timer.periodic(
       const Duration(seconds: 10),

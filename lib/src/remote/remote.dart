@@ -1,4 +1,3 @@
-import 'package:bonsoir/bonsoir.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tvmate/src/remote/remote_button_set.dart';
@@ -9,14 +8,12 @@ class Remote extends StatefulWidget {
   final String label;
   final String url;
   final String location;
-  final ResolvedBonsoirService service;
 
   const Remote({
     super.key,
     required this.label,
     required this.url,
     required this.location,
-    required this.service,
   });
 
   @override
@@ -33,7 +30,6 @@ class _Remote extends State<Remote> {
       label: widget.label,
       url: widget.url,
       location: widget.location,
-      service: widget.service,
     );
     controller.start();
   }

@@ -46,7 +46,6 @@ class AddRemoteFormController extends ChangeNotifier {
       label: label.text,
       url: url.text,
       location: location.text,
-      service: service,
     ));
   }
 
