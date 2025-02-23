@@ -12,8 +12,20 @@ class RemoteList extends StatefulWidget {
 
 class _RemoteListState extends State<RemoteList> {
   @override
+  void initState() {
+    super.initState();
+    // remotes.load();
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final remotes = Provider.of<RemoteListController>(context);
+    remotes.save();
     return ListView.builder(
       itemCount: remotes.length,
       itemBuilder: (context, index) {

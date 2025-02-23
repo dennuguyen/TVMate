@@ -2,40 +2,44 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:tvmate/src/remote/remote_model.dart';
 
 class RemoteController extends ChangeNotifier {
-  final String label;
-  final String url;
-  final String location;
   WebSocket? websocket;
   bool get connected => websocket != null;
   Timer? _pingTimer;
   Timer? _pongTimer;
+  late final RemoteModel model;
 
-  Map<String, String> commands = {
-    "Power": "20DF10EF",
-    "Vol +": "20DF40BF",
-    "Vol -": "20DFC03F",
-    "Mute": "20DF906F",
-    "Ch +": "20DF00FF",
-    "Ch -": "20DF807F",
-    "1": "20DF8877",
-    "2": "20DF48B7",
-    "3": "20DFC837",
-    "4": "20DF28D7",
-    "5": "20DFA857",
-    "6": "20DF6897",
-    "7": "20DFE817",
-    "8": "20DF18E7",
-    "9": "20DF9867",
-    "0": "20DF08F7",
-  };
+  String get url => model.url;
+  String get label => model.label;
+  Map<String, String> get commands => model.commands;
 
   RemoteController({
-    required this.label,
-    required this.url,
-    required this.location,
-  });
+    label,
+    url,
+    location,
+    commands,
+  }) {
+    model = RemoteModel(label: label, url: url, location: location, commands: {
+      "Power": "20DF10EF",
+      "Vol +": "20DF40BF",
+      "Vol -": "20DFC03F",
+      "Mute": "20DF906F",
+      "Ch +": "20DF00FF",
+      "Ch -": "20DF807F",
+      "1": "20DF8877",
+      "2": "20DF48B7",
+      "3": "20DFC837",
+      "4": "20DF28D7",
+      "5": "20DFA857",
+      "6": "20DF6897",
+      "7": "20DFE817",
+      "8": "20DF18E7",
+      "9": "20DF9867",
+      "0": "20DF08F7",
+    });
+  }
 
   @override
   void dispose() {
